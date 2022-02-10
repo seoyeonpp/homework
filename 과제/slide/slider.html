@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main_slider</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <style>
+        *{margin: 0; padding: 0; border: 0;}
+        #wrap{position: relative;}
+        h1{text-align: center; margin-top: 20px;}
+        .main_banner{width: 800px; height: 500px;  margin: 0 auto; position: relative; margin-top: 50px;}
+        li{list-style: none;}
+        li.slide{width:100%; height: 500px;}
+        img{width: 100%; height: 100%;}
+        .slick-prev{position: absolute; top: 50%; left: -100px; text-indent: -999999px; background-image: url(https://image.flaticon.com/icons/png/512/892/892512.png); width: 50px; height: 50px; background-size: contain; background-color: #fff; cursor: pointer;}
+        .slick-next{position: absolute; top: 50%; right: -100px;text-indent: -999999px; background-image: url(https://image.flaticon.com/icons/png/512/892/892528.png); width: 50px; height: 50px; background-size: contain;background-color: #fff;cursor: pointer;}
+        .slick-dots{text-align: center; margin-top: 20px;}
+        .slick-dots>li{cursor: pointer; position: relative; display: inline-block; margin: 10px; text-indent: -999999px; width: 18px; height: 18px; border-radius:50%; background: #98C6EE; transition: 0.3s;} 
+        .slick-dots>li.slick-active{width: 50px; border-radius: 20px;}
+        .slick-dots>li button{cursor: pointer; font-size: 0; outline: 0; appearance: none; display: inline-block;  width: 18px; height: 18px;  position: absolute; top: 0; left: 0; background-color:transparent; border-radius: 20px;}
+        .slick-dots>li.slick-active button{width: 0px; background-color:rgba(255, 255, 255, 0.5); animation-name: gauge; animation-timing-function: linear; animation-fill-mode: forwards; animation-direction: normal; animation-direction: alternate;}
+        @keyframes gauge {
+            from{width: 0%;}
+            to{width: 100%;}
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>Slider</h1>
+        <ul class="main_banner">
+            <li class="slide"><img src="https://cdn.pixabay.com/photo/2018/04/16/16/16/sunset-3325080_960_720.jpg" alt=""></li>
+            <li class="slide"><img src="https://cdn.pixabay.com/photo/2014/01/17/19/01/tree-247122_960_720.jpg" alt=""></li>
+            <li class="slide"><img src="https://cdn.pixabay.com/photo/2013/07/18/20/26/sea-164989_960_720.jpg" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        $(function(){
+            let $slide = $('.main_banner'),
+                arr = [1000,2000,3000];
+            
+            // 슬릭 처음 실행 시, duration 오류 문제 해결
+            $slide.on('init',function(event,slick){
+                $('.slick-dots>li:nth-child(1)').find('button').css({'animation-duration': arr[0]/1000+'s'});
+                $('.slick-dots>li:nth-child(2)').find('button').css({'animation-duration': (arr[1]/1000)+0.3+'s'});
+                $('.slick-dots>li:nth-child(3)').find('button').css({'animation-duration': (arr[2]/1000)+0.3+'s'});
+            });
+
+            $slide.slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll:1,
+                dots:true,
+                pauseOnHover:false,
+                pauseOnFocus:false,
+                autoplay: true,
+                autoplaySpeed: 1000,
+            });
+
+
+
+            //펑션이랑 합치기, arr배열이랑 인덱스값 맞추기
+            $slide.on("afterChange",function(e,slick){
+                let current = slick.currentSlide, // 0,1,2
+                    slideArr = new Array();
+
+                slideArr.push(current); //[0],[1],[2]
+            
+                gauge(arr[slideArr]);
+                $slide.slick("setOption","autoplaySpeed",arr[slideArr]);
+                
+
+                function gauge(i){
+                $('.slick-dots>li.slick-active button').css({'animation-duration': (i/1000)+0.3+'s'});
+                };
+
+                console.log(arr[slideArr]);
+
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+
+/* Noto Sans */
+@font-face {
+    font-family: "Noto Sans regular";
+    src: local(NotoSansKR-Regular),
+        url(../font/NotoSansKR-Regular.otf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans Bold";
+    src: local(NotoSansKR-Bold),
+        url(../font/NotoSansKR-Bold.otf);
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Noto Sans CJK */
+@font-face {
+    font-family: "Noto Sans CJK regular";
+    src: local(NotoSansCJKkr-Regular),
+        url(../font/NotoSansCJKkr-Regular.otf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Noto Sans CJK Bold";
+    src: local(NotoSansCJKkr-Bold),
+        url(../font/NotoSansCJKkr-Bold.otf);
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* Lato */
+@font-face {
+    font-family: "Lato regular";
+    src: local(Lato-Regular),
+        url(../font/Lato-Regular.ttf);
+    font-weight:400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato Bold";
+    src: local(Lato-Bold),
+        url(../font/Lato-Bold.ttf);
+    font-weight: 700;
+    font-style: normal;
+}
